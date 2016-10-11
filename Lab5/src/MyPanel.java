@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -12,11 +13,44 @@ public class MyPanel extends JPanel {
 	private static final int INNER_CELL_SIZE = 29;
 	private static final int TOTAL_COLUMNS = 10;
 	private static final int TOTAL_ROWS = 11;   //Last row has only one cell
+	private static final int MINES = 10;
 	public int x = -1;
 	public int y = -1;
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+ 
+	private int blockID = 0;
+    private int id;
+    private int value;
+    
+    private Random generator = new Random();
+	
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public int getID(){
+        int id = blockID;
+        blockID++;
+        return id;
+    }
+    
+    public int getValue() {
+        return value;
+    }
+    public void setValue(int value) {
+        this.value = value;
+    }
+    // create an array list
+    ArrayList<Integer> blocks = new ArrayList<Integer>(INNER_CELL_SIZE);
+    // create an array list
+    ArrayList<Integer> mines = new ArrayList<Integer>(MINES);
+    
 	public MyPanel() {   //This is the constructor... this code runs first to initialize
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
@@ -33,11 +67,51 @@ public class MyPanel extends JPanel {
 		for (int y = 0; y < TOTAL_ROWS; y++) {   //Left column
 			colorArray[0][y] = Color.LIGHT_GRAY;
 		}
-		for (int x = 1; x < TOTAL_COLUMNS; x++) {   //The rest of the grid
+		int h = 1;
+		for (int x = 1; x < TOTAL_COLUMNS; x++) {   //The rest of the grid, also gives a value to each block
 			for (int y = 1; y < TOTAL_ROWS; y++) {
+				//setId(getID());
+				blocks.add(h);
 				colorArray[x][y] = Color.WHITE;
+				h++;
 			}
 		}
+		//Plant mines, puts the blocks with mines into an array
+		for(int i =0; i <= MINES;)
+		{
+			int x,y;
+			x = generator.nextInt(10);				
+			y = generator.nextInt(10);
+			Color j = colorArray[x][y];
+			//int f = getId();
+			//Upper-Right Region
+			if( j.equals(colorArray[0][0]))
+			{
+				//colorArray[x][y] = Color.LIGHT_GRAY;
+				
+			}		
+			//Lower-Right Region
+			if( j.equals(colorArray[0][y]))
+			{
+				//colorArray[x][y] = Color.LIGHT_GRAY;
+				
+			}
+					
+			//Upper-Right
+			if( j.equals(colorArray[x][0]))
+			{
+				//colorArray[x][y] = Color.LIGHT_GRAY;
+				
+			}
+					
+			else{
+				//mines.add(f);
+				//colorArray[x][y] = Color.BLACK;
+				i++;
+			}
+				
+		}
+		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -78,6 +152,8 @@ public class MyPanel extends JPanel {
 				}
 			}
 		}
+		
+		
 	}
 	public int getGridX(int x, int y) {
 		Insets myInsets = getInsets();
@@ -129,4 +205,6 @@ public class MyPanel extends JPanel {
 		}
 		return y;
 	}
+
+	
 }
