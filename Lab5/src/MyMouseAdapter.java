@@ -124,6 +124,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 							int h = (myPanel.mouseDownGridY-1)*(10) + myPanel.mouseDownGridX;
 							
+							
 							// Around the selected block
 							int k = h - 11;  //Top left of mouse down
 							int l = h - 1;  //Center left of mouse down
@@ -134,101 +135,124 @@ public class MyMouseAdapter extends MouseAdapter {
 							int q = h + 1;  //Center right of mouse down
 							int r = h + 11;  //Bottom right of mouse down
 							
-
+							int around[] = {k,l,m,n,o,p,q,r};
+							int count = 0;
+							
 							if (mines.contains(h)) {
 							    myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 								myPanel.repaint();
 							} 
 							    
 							else {
-								
-//								if ((mines.contains(k)&&(mines.contains(m)||mines.contains(n)
-//								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))&&
-//										(mines.contains(l))) ||
-//
-//									(mines.contains(l)&&(mines.contains(m)||mines.contains(n)
-//										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))&&
-//											(mines.contains(k))) ||
-//									
-//									(mines.contains(m)&&(mines.contains(k)||mines.contains(l)
-//										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))&&
-//											(mines.contains(n))) ||
-//									
-//									(mines.contains(n)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-//										||mines.contains(p)||mines.contains(q)||mines.contains(r))&&
-//											(mines.contains(o))) ||
-//									
-//									(mines.contains(o)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-//										||mines.contains(n)||mines.contains(p)||mines.contains(q)||mines.contains(r))&&
-//											(mines.contains(q))) ||
-//									
-//									(mines.contains(p)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-//										||mines.contains(n)||mines.contains(o)||mines.contains(q))&&
-//											(mines.contains(r))) ||
-//									
-//									(mines.contains(q)&&(mines.contains(k)||mines.contains(l)
-//										||mines.contains(n)||mines.contains(o)||mines.contains(p)||mines.contains(r))&&
-//											(mines.contains(m))) ||
-//									
-//									(mines.contains(r)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-//										||mines.contains(n)||mines.contains(o)||mines.contains(q))&&
-//												(mines.contains(p))))
-//							    	
-//							    	{
-//									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.YELLOW;
-//									myPanel.repaint();
-//									
-//								}
-							    
-								//green for two mines
-								if((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
-								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
+								// counts the mines 
+								if(!mines.contains(h)){
+									for (int i=0; i<8; i++){
+										if(mines.contains(around[i])){
+											
+											count++;
+										}
+									}                                                                                                                              
+										if(count==8){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.darkGray;
+												myPanel.repaint();
+												
+												JLabel j8 = new JLabel();
+											    j8.setText("8");
+											    j8.setBounds(x, y-18, 200, 50);
+											    myPanel.add(j8);
+										}
+										else if(count==7){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.pink;
+												myPanel.repaint();
+												
+												JLabel j7 = new JLabel();
+											    j7.setText("7");
+											    j7.setBounds(x, y-18, 200, 50);
+											    myPanel.add(j7);
+										}
+										else if(count==6){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.orange;
+												myPanel.repaint();
 										
-							    	(mines.contains(l)&&(mines.contains(k)||mines.contains(m)||mines.contains(n)
-										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
-							    	
-							    	(mines.contains(m)&&(mines.contains(k)||mines.contains(l)||mines.contains(n)
-										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
-							    	
-							    	(mines.contains(n)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
-							    	
-							    	(mines.contains(o)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-										||mines.contains(n)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
-							    	
-							    	(mines.contains(p)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-										||mines.contains(n)||mines.contains(o)||mines.contains(q)||mines.contains(r))) ||
-							    	
-							    	(mines.contains(q)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-										||mines.contains(n)||mines.contains(o)||mines.contains(p)||mines.contains(r))) ||
-							    	
-							    	(mines.contains(r)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
-										||mines.contains(n)||mines.contains(o)||mines.contains(p)||mines.contains(q))) 
-							    		){
-								    	
-								    	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.green;
-								    	myPanel.repaint();
-//								    	  JLabel j1 = new JLabel();
-//										    j1.setText("2");
-//										    j1.setBounds(myPanel.mouseDownGridX, myPanel.mouseDownGridY, 200, 50);
-//										    myPanel.add(j1);
-//										    
-										 
-								    	}
-							    //blue 1 mine
-							    else if(mines.contains(k)||mines.contains(l)||mines.contains(m)||mines.contains(n)
-							    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r)){
-							    	
-							    	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLUE;
-									myPanel.repaint();
-							    		
-							    	} 
+												JLabel j6 = new JLabel();
+											    j6.setText("6");
+											    j6.setBounds(x, y-18, 200, 50);
+											    myPanel.add(j6);
+										}
+										else if(count==5){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.cyan;
+												myPanel.repaint();
+												
+												 JLabel j5 = new JLabel();
+												    j5.setText("5");
+												    j5.setBounds(x, y-18, 200, 50);
+												    myPanel.add(j5);
+												    
+												    }
+										else if(count==4){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.magenta;
+												myPanel.repaint();
+										
+										 JLabel j4 = new JLabel();
+										    j4.setText("4");
+										    j4.setBounds(x, y-18, 200, 50);
+										    myPanel.add(j4);
+										    }
+										    
+										else if(count==3){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.yellow;
+												myPanel.repaint();
+										
+										// displays number 3
+												
+												  JLabel j3 = new JLabel();
+												    j3.setText("3");
+												    j3.setBounds(x, y-18, 200, 50);
+												    myPanel.add(j3);
+												
+										}
+										else if(count==2){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.green;
+												myPanel.repaint(); 	
+											
+											//displays number 2
+												
+												  JLabel j2 = new JLabel();
+												    j2.setText("2");
+												    j2.setBounds(x, y-18, 200, 50);
+												    myPanel.add(j2);
+												
+										}
+										else if(count==1){
+											 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.blue;
+												myPanel.repaint();
+												
+												 
+											//displays number 1
+												
+												  JLabel j1 = new JLabel();
+												    j1.setText("1");
+												    j1.setBounds(x, y-18, 200, 50);
+												    myPanel.add(j1);
+											}
+										
+										
+										else{
+											myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.lightGray;
+											myPanel.repaint();
+										}
+									count=0;
+									}
+						
+								}
+							    
+								
 							  
 							    }
 							
 							 break;
 		
-						}
+						
 					}
 				}
 			}
