@@ -138,9 +138,24 @@ public class MyMouseAdapter extends MouseAdapter {
 							int around[] = {k,l,m,n,o,p,q,r};
 							int count = 0;
 							
+							//when the user clicks a mine and loses
+							
 							if (mines.contains(h)) {
-							    myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
-								myPanel.repaint();
+								
+//								for(int xCell=0; x<9; xCell++){
+//									for(int yCell=0; x<9; yCell++){
+//										
+//										int mCell=(yCell-1)*(10)+xCell;
+//										
+//										if(mines.contains(mCell)){
+//										    myPanel.colorArray[xCell][yCell] = Color.BLACK;
+//											myPanel.repaint();
+//										}
+//									}
+//								}
+								
+								 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+									myPanel.repaint();
 							} 
 							    
 							else {
@@ -156,6 +171,7 @@ public class MyMouseAdapter extends MouseAdapter {
 									 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.lightGray;
 										myPanel.repaint();
 										
+									//displays the numbers on the cells	
 										if(count==8){
 										
 												JLabel j8 = new JLabel();
