@@ -302,9 +302,10 @@ public class MyMouseAdapter extends MouseAdapter {
                         		myP.colorArray[myP.mouseDownGridX][myP.mouseDownGridY] = Color.WHITE;
                             	myP.repaint();
                         	}
-                        	else
+                        	else if (currentColor.equals(Color.WHITE)){
                         		myP.colorArray[myP.mouseDownGridX][myP.mouseDownGridY] = Color.RED;
                         		myP.repaint();
+                        	}
         	}
         	break;
                     }
