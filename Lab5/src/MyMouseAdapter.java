@@ -247,13 +247,22 @@ public class MyMouseAdapter extends MouseAdapter {
 											
 											//here goes the chain reaction code for empty cells
 											
+											for(gridX=myPanel.mouseDownGridX-1; gridX<4; gridX++){
+												for(gridY=myPanel.mouseDownGridY-1; gridY<4; gridY++){
+													p= (gridY-1)*(10) + gridX;
+													if(!mines.contains(p)){
+														myPanel.colorArray[gridX][gridY] = Color.LIGHT_GRAY;
+													}
+													else{}
+												}
+												
+											}
+											
 											myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.lightGray;
 											myPanel.repaint();
 										}
 									count=0;
 									int toWin=0;
-									
-									//counts how many cells are uncovered and tells you if you won
 									for(gridX=1; gridX<10; gridX++){
 										for(gridY=1; gridY<10; gridY++){
 											if(myPanel.colorArray[gridX][gridY] == Color.lightGray){
