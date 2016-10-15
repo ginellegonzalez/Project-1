@@ -101,7 +101,7 @@ public class MyMouseAdapter extends MouseAdapter {
 			myPanel.x = x;
 			myPanel.y = y;
 			ArrayList<Integer> mines = myPanel.mines;
-
+			ArrayList<Integer> blocks = myPanel.blocks;
 			int gridX = myPanel.getGridX(x, y);
 			int gridY = myPanel.getGridY(x, y);
 			
@@ -142,22 +142,26 @@ public class MyMouseAdapter extends MouseAdapter {
 							
 							if (mines.contains(h)) {
 								
-//								for(int xCell=0; x<9; xCell++){
-//									for(int yCell=0; x<9; yCell++){
-//										
-//										int mCell=(yCell-1)*(10)+xCell;
-//										
-//										if(mines.contains(mCell)){
-//										    myPanel.colorArray[xCell][yCell] = Color.BLACK;
-//											myPanel.repaint();
-//										}
-//									}
-//								}
+								for(gridX=1; gridX<10; gridX++ ){
+									for(gridY=1; gridY<10; gridY++ ){
+										int i= (gridY-1)*(10) + gridX;
+										if (mines.contains(i)){
+											myPanel.colorArray[gridX][gridY] = Color.BLACK;
+											myPanel.repaint();
+											
+										}
+										else
+										{
+											//Do nothing
+										}
+									}
+
+								}
 								
-								 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
-									myPanel.repaint();
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+								myPanel.repaint();
 							} 
-							    
+							   
 							else {
 								// counts the mines 
 								if(!mines.contains(h)){
@@ -169,7 +173,7 @@ public class MyMouseAdapter extends MouseAdapter {
 									}  
 									
 									 myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.lightGray;
-										myPanel.repaint();
+									 myPanel.repaint();
 										
 									//displays the numbers on the cells	
 										if(count==8){
@@ -220,6 +224,7 @@ public class MyMouseAdapter extends MouseAdapter {
 										else if(count==2){
 												  JLabel j2 = new JLabel();
 												    j2.setText("2");
+												    
 												    j2.setBounds(x, y-18, 200, 50);
 												    myPanel.add(j2);
 												
@@ -227,7 +232,7 @@ public class MyMouseAdapter extends MouseAdapter {
 										else if(count==1){
 												  JLabel j1 = new JLabel();
 												    j1.setText("1");
-												    j1.setBounds(x, y-18, 200, 50);
+												    j1.setBounds(x, y -18, 200, 50);
 												    myPanel.add(j1);
 											}
 										
