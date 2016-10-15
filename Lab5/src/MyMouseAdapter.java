@@ -149,6 +149,11 @@ public class MyMouseAdapter extends MouseAdapter {
 											myPanel.colorArray[gridX][gridY] = Color.BLACK;
 											myPanel.repaint();
 											
+											JLabel j9 = new JLabel();
+										    j9.setText("You lost! :( Try again!");
+										    j9.setBounds(100, 400, 200, 50);
+										    myPanel.add(j9);
+										    
 										}
 										else
 										{
@@ -163,6 +168,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							} 
 							   
 							else {
+								
 								// counts the mines 
 								if(!mines.contains(h)){
 									for (int i=0; i<8; i++){
@@ -245,6 +251,24 @@ public class MyMouseAdapter extends MouseAdapter {
 											myPanel.repaint();
 										}
 									count=0;
+									int toWin=0;
+									
+									//counts how many cells are uncovered and tells you if you won
+									for(gridX=1; gridX<10; gridX++){
+										for(gridY=1; gridY<10; gridY++){
+											if(myPanel.colorArray[gridX][gridY] == Color.lightGray){
+												toWin++;
+												if(toWin==71){
+													
+													JLabel j10 = new JLabel();
+												    j10.setText("Congratulations! You Won!");
+												    j10.setBounds(100, 400, 200, 50);
+												    myPanel.add(j10);
+												}
+												else{}
+											}
+										}
+									}
 									}
 						
 								}
