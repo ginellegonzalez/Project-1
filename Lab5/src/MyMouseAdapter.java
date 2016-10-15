@@ -182,66 +182,18 @@ public class MyMouseAdapter extends MouseAdapter {
 									 myPanel.repaint();
 										
 									//displays the numbers on the cells	
-										if(count==8){
-										
-												JLabel j8 = new JLabel();
-											    j8.setText("8");
-											    j8.setBounds(x, y-18, 200, 50);
-											    myPanel.add(j8);
-										}
-										else if(count==7){
-										
-												JLabel j7 = new JLabel();
-											    j7.setText("7");
-											    j7.setBounds(x, y-18, 200, 50);
-											    myPanel.add(j7);
-										}
-										else if(count==6){
-											 
-												JLabel j6 = new JLabel();
-											    j6.setText("6");
-											    j6.setBounds(x, y-18, 200, 50);
-											    myPanel.add(j6);
-										}
-										else if(count==5){
-												
-												 JLabel j5 = new JLabel();
-												    j5.setText("5");
-												    j5.setBounds(x, y-18, 200, 50);
-												    myPanel.add(j5);
-												    
-												    }
-										else if(count==4){
-	
-										 JLabel j4 = new JLabel();
-										    j4.setText("4");
-										    j4.setBounds(x, y-18, 200, 50);
-										    myPanel.add(j4);
-										    }
-										    
-										else if(count==3){
-							
-												  JLabel j3 = new JLabel();
-												    j3.setText("3");
-												    j3.setBounds(x, y-18, 200, 50);
-												    myPanel.add(j3);
-												
-										}
-										else if(count==2){
-												  JLabel j2 = new JLabel();
-												    j2.setText("2");
-												    
-												    j2.setBounds(x, y-18, 200, 50);
-												    myPanel.add(j2);
-												
-										}
-										else if(count==1){
-												  JLabel j1 = new JLabel();
-												    j1.setText("1");
-												    j1.setBounds(x, y -18, 200, 50);
-												    myPanel.add(j1);
-											}
-										
+									 if(count>0){
+										 
+										 for(int z=0; z<9; z++){
+											 if(count==z){
+												 JLabel j8 = new JLabel();
+												  j8.setText(String.valueOf(count));
+												    j8.setBounds(x, y-18, 200, 50);
+												    myPanel.add(j8);
+											 }
+										 }
+									 }
+														 
 										
 										else{
 											
@@ -252,6 +204,7 @@ public class MyMouseAdapter extends MouseAdapter {
 													p= (gridY-1)*(10) + gridX;
 													if(!mines.contains(p)){
 														myPanel.colorArray[gridX][gridY] = Color.LIGHT_GRAY;
+														
 													}
 													else{}
 												}
