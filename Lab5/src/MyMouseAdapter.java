@@ -205,6 +205,22 @@ public class MyMouseAdapter extends MouseAdapter {
 													if(!mines.contains(p)){
 														myPanel.colorArray[gridX][gridY] = Color.LIGHT_GRAY;
 														
+														for (int i=0; i<8; i++){
+															if(mines.contains(around[i])){
+																
+																count++;
+															}
+														}  
+														
+														 for(int z=0; z<9; z++){
+															 if(count==z){
+																 JLabel j8 = new JLabel();
+																  j8.setText(String.valueOf(count));
+																    j8.setBounds(x, y-18, 200, 50);
+																    myPanel.add(j8);
+															 }
+														 }
+														
 													}
 													else{}
 												}
